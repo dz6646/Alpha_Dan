@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +26,12 @@ public class logAndSignResult extends AppCompatActivity {
         gi = getIntent();
         welcomeMsg = findViewById(R.id.textView);
         welcomeMsg.setText("Welcome, " + gi.getStringExtra("name") + "!"); // welcome the user
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     public void signout(View view) {

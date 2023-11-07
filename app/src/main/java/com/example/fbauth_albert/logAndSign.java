@@ -32,13 +32,18 @@ public class logAndSign extends AppCompatActivity {
         email = findViewById(R.id.input_email);
         password = findViewById(R.id.input_password);
         si = new Intent(this, logAndSignResult.class);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        menu.add(0, 0, 250, "Gallery");
+        menu.add(0, 0, 200, "bool hakaboolbool");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         return true;
     }
 
@@ -83,18 +88,5 @@ public class logAndSign extends AppCompatActivity {
                 }
             }
         });
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String activity = item.getTitle().toString();
-
-        if(activity.equals("Gallery"))
-        {
-            Intent galleryActivity = new Intent(this, Gallery.class);
-            startActivity(galleryActivity);
-        }
-        return true;
     }
 }
