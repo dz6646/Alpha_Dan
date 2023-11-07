@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     FirebaseAuth mAuth;
-    int nameEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
+            // should be impossible
             Toast.makeText(this, "there is a user logged in", Toast.LENGTH_SHORT).show();
             startActivity(si);
         }
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public void sign_in(View view) {
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, task -> {
             if(task.isSuccessful()){
-                si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@')));
+                si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@'))); // get the name of the user
                 Toast.makeText(MainActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
 
                 startActivity(si);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@')));
+                    si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@'))); // get the name of the user
                     Toast.makeText(MainActivity.this, "Log in Successful", Toast.LENGTH_SHORT).show();
 
                     startActivity(si);
