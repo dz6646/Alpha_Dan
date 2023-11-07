@@ -37,7 +37,6 @@ public class logAndSign extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        menu.add(0, 0, 200, "bool hakaboolbool");
         return true;
     }
 
