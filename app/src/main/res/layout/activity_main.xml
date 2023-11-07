@@ -55,19 +55,42 @@
                 android:layout_height="0dp"
                 android:layout_weight="3" />
 
-            <Button
-                android:id="@+id/button_send"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                android:backgroundTint="#000000"
-                android:text="Log in"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_signin"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#5E5E5B"
+                    android:text="@string/sign_in"
+                    android:onClick="sign_in"
+                    android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/button_login"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#000000"
+                    android:text="@string/log_in"
+                    android:onClick="log_in"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <Space
