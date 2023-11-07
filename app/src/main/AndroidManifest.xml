@@ -13,10 +13,13 @@
         android:theme="@style/Theme.FBAuth_Albert"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".Gallery"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".logAndSignResult"
+            android:exported="false" />
+        <activity
+            android:name=".logAndSign"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

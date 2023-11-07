@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity2 extends AppCompatActivity {
+public class logAndSignResult extends AppCompatActivity {
 
     Intent gi;
 
@@ -21,7 +21,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.login_result);
         gi = getIntent();
         welcomeMsg = findViewById(R.id.textView);
         welcomeMsg.setText("Welcome, " + gi.getStringExtra("name") + "!"); // welcome the user
