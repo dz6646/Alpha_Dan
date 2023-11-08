@@ -11,9 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,12 +35,20 @@ public class logAndSign extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        menu.add("Gallery");
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        switch(item.getTitle().toString())
+        {
+            case "Gallery":
+                Intent Gallery = new Intent(this, Gallery.class);
+                startActivity(Gallery);
+                finish();
+                break;
+        }
         return true;
     }
 
@@ -73,18 +79,15 @@ public class logAndSign extends AppCompatActivity {
     }
 
     public void log_in(View view) {
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@'))); // get the name of the user
-                    Toast.makeText(logAndSign.this, "Log in Successful", Toast.LENGTH_SHORT).show();
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, task -> {
+            if(task.isSuccessful()){
+                si.putExtra("name", email.getText().toString().substring(0, email.getText().toString().indexOf('@'))); // get the name of the user
+                Toast.makeText(logAndSign.this, "Log in Successful", Toast.LENGTH_SHORT).show();
 
-                    startActivity(si);
-                }
-                else {
-                    Toast.makeText(logAndSign.this, "log in Failed", Toast.LENGTH_SHORT).show();
-                }
+                startActivity(si);
+            }
+            else {
+                Toast.makeText(logAndSign.this, "log in Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

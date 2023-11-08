@@ -1,5 +1,6 @@
 package com.example.fbauth_albert;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,12 +10,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.UUID;
 
 public class Gallery extends AppCompatActivity {
 
@@ -36,6 +41,20 @@ public class Gallery extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        menu.add("Auth");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getTitle().toString())
+        {
+            case "Auth":
+                Intent Auth = new Intent(this, logAndSign.class);
+                startActivity(Auth);
+                finish();
+                break;
+        }
         return true;
     }
 
@@ -48,17 +67,17 @@ public class Gallery extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("Uploading image...");
-        pd.show();
 
         if(resultCode == RESULT_OK)
         {
             if(requestCode == GALLERY_REQ_CODE && data != null && data.getData() != null)
             {
+                pd.show();
                 imageUri = data.getData();
-                StorageReference imageRef = storageRef.child("images/");
+                String random = UUID.randomUUID().toString();
+                StorageReference imageRef = storageRef.child("images/" + random);
                 imageRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
                     pd.dismiss();
                     Toast.makeText(this, "Image Uploaded", Toast.LENGTH_SHORT).show();
@@ -82,4 +101,17 @@ public class Gallery extends AppCompatActivity {
         }
 
     }
+
+    protected void onDestroy () {
+        FirebaseAuth.getInstance().signOut();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        FirebaseAuth.getInstance().signOut();
+        finish();
+        super.onBackPressed();
+    }
+
 }
