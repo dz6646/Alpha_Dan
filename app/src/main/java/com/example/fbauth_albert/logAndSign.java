@@ -36,6 +36,7 @@ public class logAndSign extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         menu.add("Gallery");
+        menu.add("multiLine");
         return true;
     }
 
@@ -46,6 +47,12 @@ public class logAndSign extends AppCompatActivity {
             case "Gallery":
                 Intent Gallery = new Intent(this, Gallery.class);
                 startActivity(Gallery);
+                finish();
+                break;
+
+            case "multiLine":
+                Intent multi = new Intent(this, MultiLineText.class);
+                startActivity(multi);
                 finish();
                 break;
         }
