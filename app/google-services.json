@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "693413766162",
-    "project_id": "fbauth-454a0",
-    "storage_bucket": "fbauth-454a0.appspot.com"
+    "project_number": "378974211766",
+    "project_id": "alpha-2be0a",
+    "storage_bucket": "alpha-2be0a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:693413766162:android:75d02650ab77a19647a4cb",
+        "mobilesdk_app_id": "1:378974211766:android:a0ff802bb80231f6782017",
         "android_client_info": {
           "package_name": "com.example.fbauth_albert"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBq3y2kDG5fKU6taK_tdPRX8m21k9BoEmU"
+          "current_key": "AIzaSyDDK8jQY6apSQiCuw-lR2jcIba-xXmrc4A"
         }
       ],
       "services": {

@@ -1,6 +1,7 @@
 package com.example.fbauth_albert;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -19,8 +20,8 @@ public class MultiLineText extends AppCompatActivity {
 
     EditText input_text;
     TextView output;
-    FirebaseDatabase database;
-    DatabaseReference dbRef;
+    FirebaseDatabase db;
+    DatabaseReference myRef;
 
 
     @Override
@@ -29,31 +30,13 @@ public class MultiLineText extends AppCompatActivity {
         setContentView(R.layout.activity_multi_line_text);
         input_text = findViewById(R.id.input_text);
         output = findViewById(R.id.view_text);
-        database = FirebaseDatabase.getInstance();
-        dbRef = database.getReference();
+        db = FirebaseDatabase.getInstance();
+        myRef = db.getReference("text");
     }
 
-    public void save_text(View view) {
+
+    public void save(View view) {
         String text = input_text.getText().toString();
-
-        if(text.length() > 0)
-        {
-            //save
-            dbRef.setValue(text);
-        }
-
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String value = snapshot.getValue(String.class);
-                output.setText(value);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MultiLineText.this, "Failed to load", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        myRef.setValue(text);
     }
 }
